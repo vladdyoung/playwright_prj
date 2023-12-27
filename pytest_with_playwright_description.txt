@@ -1,0 +1,50 @@
+### Зачем нужен класс MainPage.
+
+Он необходим для взаимодействия с классом BasePage. Наследуясь от BasePage в MainPage мы в базовом классе имеем
+возможность работать с инициализатором __init__ BasePage.
+
+### Зачем нужен класс BasePage
+BasePage используется как основа. В ней находится инициализатор, который принимает браузер и URL. Наследуясь от BasePage,
+можем использовать браузер и URL для работы в любой страницы (в любом классе например MainPage или LoginPage)
+
+### Когда ресурс доступен только после авторизации и когда можно пользоваться ресурсом без авторизации.
+Если начинаем с авторизации, тогда можно реализовать отдельный метод, где начинаем со страницы авторизации и, соответственно,
+с метода открытия страницы авторизации, а затем загружаем основную страницу приложения. Пример:
+
+---------------------------------------------------------------------------------------------------------
+Метод для работы со страницей авторизации
+@allure.step('Открыть главную страницу')
+def open(cls, url: str, user: WorkplaceUser):
+    browser.open(url)
+    login_page = LoginPage()
+    login_page.wait_loading()
+    if browser.element('//h3 | //h2').get(query.text) == 'Авторизация':
+        login_page.login(user=user)
+    return cls()
+
+Метод для работы с главной страницей
+def open_order(session: Session, order: dict, role: str):
+    page = MainPage.open(session.workplace, session.workplace_users.get(role))
+    page = page.open_menu_item(item='Список заявок', page_class=PAGE_BY_NAME.get('Список заявок'))
+    page.open_order_by_number(number=crm_order_id)
+
+    with allure.step(f'Заявка {crm_order_id} открыта'):
+        page.get_element(page.TITLE).with_(timeout=10).should(have.text(crm_order_id))
+    return page
+
+ Тест
+ def test_overlight_full_agreed(session: Session, order, order_builder, title):
+    page = order_steps.open_order(session=session, order=order.json, role=WorkplaceRoles.CREDIT_ANALYST)
+---------------------------------------------------------------------------------------------------------
+
+Если можно пользоваться приложением без авторизации, метод для работы со страницей авторизации не используем. Пример:
+---------------------------------------------------------------------------------------------------------
+Тест
+    def test_reg_new_user(self, page, base_url):
+        main_page = MainPage(page=page, url=base_url)
+        main_page.open()
+---------------------------------------------------------------------------------------------------------
+
+### Метод open находится в BasePage, а не в MainPage, т.к. это метод для открытия какой-либо страницы. Т.к. все pages
+наследуются от базовой страницы, метод открытия должен находится именно в базовом классе. Если он будет находиться в
+MainPage например, наследоваться нужно будет от MainPage, а это не правильно
