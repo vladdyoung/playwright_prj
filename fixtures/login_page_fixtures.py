@@ -6,8 +6,8 @@ from pages.login_page import LoginPage
 
 
 @pytest.fixture
-def del_user_account(page, base_url):
+def del_user_account(page, session, base_url):
     """ Фикстура удаления аккаунта после прохождения теста с регистрацией нового пользователя в системе """
 
     yield
-    LoginPage(page=page, url=base_url).del_account()
+    LoginPage(page=page, session=session, url=base_url).del_account()

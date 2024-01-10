@@ -1,7 +1,4 @@
-import sys
-
 import allure
-import pytest
 from loguru import logger
 
 from pages.main_page import MainPage
@@ -17,6 +14,7 @@ class TestMainPage:
         page.change_language()
         page.should_be_changed_language()
 
+    @logger.catch(reraise=True)
     @allure.title('Проверка работы поля поиска продукта')
     def test_search_field(self, page, base_url):
         page = MainPage(page=page, url=base_url)

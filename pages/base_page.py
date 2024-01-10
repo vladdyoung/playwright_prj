@@ -2,13 +2,16 @@
 import allure
 from playwright.sync_api import Page, expect
 
+from models.session import Session
+
 
 class BasePage:
     """ Базовая страница. Содержит основные методы для взаимодействия со страницами приложения """
 
-    def __init__(self, page: Page, url):
+    def __init__(self, page: Page, session: Session, url):
         self.page = page
         self.url = url
+        self.session = session
 
     @allure.step('Открыть браузер')
     def open(self):
