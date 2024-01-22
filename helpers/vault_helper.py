@@ -55,27 +55,3 @@ def parse_config_string(config_string: Union[str, Dict]):
     else:
         parsed = {p[0]: p[1] for p in parts}
     return parsed
-
-
-# def parse_user(role: str, user: str) -> WorkplaceUser:
-#     r""" Получение данных пользователя в виде экземпляра WorkplaceUser из строк формата:
-#         domain\username@password
-#         username@password
-#
-#     Args:
-#         role: Роль пользователя. Аттрибут WorkplaceRoles
-#         user: строка с данными пользователя
-#
-#     Returns:
-#         result: экземпляр WorkplaceUser
-#     """
-#     domain = DEFAULT_DOMAIN
-#     if re.match(r'^.*\\.*@.*$', user):
-#         username, password = user.split('@')
-#         domain, username = username.split('\\')
-#     elif re.match(r'^.*@.*$', user):
-#         username, password = user.split('@')
-#     else:
-#         raise ValueError(f'Некорректный формат строки с информацией о пользователе: {user}')
-#     result = WorkplaceUser(role=role, username=username, password=password, domain=domain)
-#     return result

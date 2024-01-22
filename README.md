@@ -1,6 +1,22 @@
 # python_playwright
 ## Semple work with Python Playwright librery
 
+## Описание проекта.
+В начале проект задумывался для практики работы с Playwright, но затем основной идей стало объединить несколько фреймворков
+для работы с браузером (Playwright, Selenium, Selene) и посмотреть их работу.\
+Для практики используется несколько web-приложений, каждый из которых по своему уникально и позволяет попробовать тот или
+иной метод работы с ним.
+---
+
+
+### Vault и хранение секретов.
+Т.к. Vault развернут локально, на него завязаны только данные для аутентификации и регистрации.
+В силу особенностей, после каждого перезапуска Vault EMAIL/PASS нужно вводить заново. \
+\
+Остальные секреты хранятся в директории .env
+---
+
+
 ### Установка:
 ```commandline
 pip install playwright
@@ -96,4 +112,25 @@ jetbrains://pycharm/navigate/reference?project=python_playwright&path=~\AppData\
 в pytest.ini указать несколько браузеров: --browser chromium --browser firefox
 в тесте использовать фикстуру: @pytest.mark.only_browser("firefox")
 могут быть неожиданные результаты работы!
+```
+### Ожидание загрузки страницы
+```commandline
+page.wait_for_load_state('load')
+```
+
+### Скриншот при падении
+```commandline
+Первый способ
+В проекте реализовано:
+pytest.ini
+--screenshot only-on-failure --output ../../test-results
+скриншот делается только при падении теста и сохроняется в директории test-results в корне проекта
+
+Второй способ
+Использование pytest-хука в conftest.py с применением метода playwright .screenshot:
+def pytest_exception_interact(node, call, report):
+     if report.failed:
+         screenshot_dir = fr'{ROOT_DIR}/screenshots'
+         screenshot_path = f"{screenshot_dir}/{node.name}.png"
+         node.funcargs["page"].screenshot(path=screenshot_path, full_page=True)
 ```

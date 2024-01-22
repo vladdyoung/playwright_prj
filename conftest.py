@@ -1,7 +1,7 @@
 import pytest
 from loguru import logger
 
-from config import BASE_URL
+from config import OSCAR_SANDBOX_BASE_URL
 from models.session import Session
 
 # регистрация фикстур
@@ -18,7 +18,7 @@ def pytest_addoption(parser):
 
     parser.addoption(
         "--url",
-        default=BASE_URL,
+        default=OSCAR_SANDBOX_BASE_URL,
         help="Enter url"
     )
     parser.addoption(
@@ -29,7 +29,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='session')
 def base_url(request):
-    """ Базовый URL
+    """ Фикстура для запроса URL
 
         return: возвращает либо стандарный url, либо тот, который передан в командную строку
     """
@@ -58,7 +58,11 @@ def browser_context_args(browser_context_args):
 
 @pytest.fixture(scope="session", autouse=True)
 def logger_prj():
-    """ Фикстура для логирования с помощью LOGURU"""
+    """ Фикстура для логирования с помощью LOGURU
+
+        Args:
+            autouse=True: для того, чтобы не вызывать явно фикстуру в каждом тесте
+    """
 
     logger.add('../../logs/log.log', format='{time} {level} {message}', level='ERROR', rotation='100 KB',
                compression='zip')

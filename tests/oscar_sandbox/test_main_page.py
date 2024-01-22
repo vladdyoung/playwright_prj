@@ -1,4 +1,5 @@
 import allure
+import pytest
 from loguru import logger
 
 from pages.main_page import MainPage
@@ -16,8 +17,9 @@ class TestMainPage:
 
     @logger.catch(reraise=True)
     @allure.title('Проверка работы поля поиска продукта')
-    def test_search_field(self, page, session, base_url):
+    @pytest.mark.parametrize('text', ["The shellcoder's handbook"])
+    def test_search_field(self, page, session, base_url, text):
         page = MainPage(page=page, session=session, url=base_url)
         page.open()
-        page.fill_search_field_by_character()
+        page.fill_search_field_by_character(text=text)
         page.should_be_work_search_fill()
