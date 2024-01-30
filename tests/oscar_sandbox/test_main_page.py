@@ -2,7 +2,7 @@ import allure
 import pytest
 from loguru import logger
 
-from pages.main_page import MainPage
+from pages.oscar_sandbox.main_page import MainPage
 
 
 class TestMainPage:

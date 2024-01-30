@@ -2,7 +2,7 @@ import allure
 from loguru import logger
 
 from config import CATALOGUE_URL
-from pages.catalog_page import CatalogPage
+from pages.oscar_sandbox.catalog_page import CatalogPage
 
 
 class TestCatalogPage:

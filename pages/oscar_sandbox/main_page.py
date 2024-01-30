@@ -3,7 +3,7 @@
 import allure
 from playwright.sync_api import expect
 
-from pages.base_page import BasePage
+from pages.oscar_sandbox.base_page import BasePage
 
 
 class MainPage(BasePage):

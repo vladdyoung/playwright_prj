@@ -3,7 +3,7 @@ import pytest
 from loguru import logger
 
 from config import LOGIN_URL
-from pages.login_page import LoginPage
+from pages.oscar_sandbox.login_page import LoginPage
 
 
 class TestLoginPage:

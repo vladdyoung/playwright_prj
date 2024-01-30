@@ -24,7 +24,7 @@ class BasePage:
     @allure.step('Открыть браузер')
     def open(self):
         """ Функция открытия страницы приложения и проверки соответствия URL """
-        self.page.goto(self.url)  # стандартная фикстура Playwright для старта браузера и открытия URL
+        self.page.goto(self.url, timeout=70000)  # стандартная фикстура Playwright для старта браузера и URL
         self.page.wait_for_load_state('load')  # ожидание загрузки страницы
         expect(self.page).to_have_url(self.url)  # проверка соответствия URL
 

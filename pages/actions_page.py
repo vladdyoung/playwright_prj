@@ -1,10 +1,9 @@
 """ Страница приложения для проверки работы с различными actions """
 
 import allure
-from playwright.sync_api import expect
 
 from config import TEST_FILES_DIR
-from pages.base_page import BasePage
+from pages.oscar_sandbox.base_page import BasePage
 
 
 class ActionsPage(BasePage):

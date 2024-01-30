@@ -2,7 +2,7 @@
 
 import pytest
 
-from pages.login_page import LoginPage
+from pages.oscar_sandbox.login_page import LoginPage
 
 
 @pytest.fixture
