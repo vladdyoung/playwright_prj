@@ -16,7 +16,7 @@ UPLOAD_FILES_URL = f'{ACTIONS_BASE_URL}upload/'
 DRAG_AND_DROP_URL = f'{ACTIONS_BASE_URL}draganddrop/'
 
 # Конфиг для demoqa
-CATALOGUE_URL = f'{OSCAR_SANDBOX_BASE_URL}catalogue/'
+NEW_TAB_URL = f'{DEMOQA_BASE_URL}sample'
 
 # Конфиг для локального Vault
 VAULT_URL = 'http://127.0.0.1:8200'

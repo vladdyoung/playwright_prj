@@ -1,5 +1,6 @@
 import pytest
 from loguru import logger
+from playwright.sync_api import sync_playwright
 
 from config import OSCAR_SANDBOX_BASE_URL
 from models.session import Session
@@ -16,15 +17,22 @@ def pytest_addoption(parser):
 
     """
 
-    parser.addoption(
-        "--url",
-        default=OSCAR_SANDBOX_BASE_URL,
-        help="Enter url"
-    )
+    group = parser.getgroup("playwright", "Playwright")
+    # parser.addoption(
+    #     "--url",
+    #     default=OSCAR_SANDBOX_BASE_URL,
+    #     help="Enter url"
+    # )
     parser.addoption(
         "--vault_token",
         action="store",
         help='Токен для доступа к vault')
+    group.addoption(
+        "--url",
+        action="store_true",
+        default=False,
+        help="Run tests in headed mode.",
+    )
 
 
 @pytest.fixture(scope='session')
