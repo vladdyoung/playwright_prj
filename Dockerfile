@@ -10,4 +10,4 @@ RUN ["chmod", "777", "/app"]
 ENV TOKEN=${TOKEN}
 ENV EMAIL=${EMAIL}
 
-ENTRYPOINT pytest tests --headed --vault_token=${TOKEN}
+CMD pytest tests --headed --vault_token=${TOKEN}
