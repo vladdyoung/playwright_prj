@@ -27,6 +27,7 @@ class BasePage:
         self.page.goto(self.url, timeout=70000)  # стандартная фикстура Playwright для старта браузера и URL
         self.page.wait_for_load_state('load')  # ожидание загрузки страницы
         expect(self.page).to_have_url(self.url)  # проверка соответствия URL
+        return self.page
 
     @allure.step('Перейти на страницу')
     def go_to_page(self, page_name_locator):

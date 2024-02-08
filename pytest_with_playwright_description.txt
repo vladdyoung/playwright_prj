@@ -130,7 +130,7 @@ def logger_prj():
 
 Второй способ.
 Установка c помощью vault.exe (Не использовать, т.к. нужно каждый раз держать открытой cmd и не сохраняет секреты):
-Скачать и установить локально Vault (https://developer.hashicorp.com/vault/install?product_intent=vault)
+Скачать Vault (https://developer.hashicorp.com/vault/install?product_intent=vault)
 В PowerShell или cmd зайти в директорию со скаченным файлом и выполнить команду ./vault.exe server -dev
 Найти локальный адрес с портом 8200
 Скопировать токен для входа в Vault
