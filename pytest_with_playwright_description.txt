@@ -122,8 +122,14 @@ def logger_prj():
 ---------------------------------------------------------------------------------------------------------
 
 ### Защитить данные с помощью Vault:
+Первый способ.
+Установка с помощью Docker.
+1) PowerShell: docker run -d --name=dev-vault -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot' -p 8200:8200 vault:1.13.3
+(можно любую версию, но latest не грузится)
+2) https://localhost:8200 Token: myroot
 
-Установка:
+Второй способ.
+Установка c помощью vault.exe (Не использовать, т.к. нужно каждый раз держать открытой cmd и не сохраняет секреты):
 Скачать и установить локально Vault (https://developer.hashicorp.com/vault/install?product_intent=vault)
 В PowerShell или cmd зайти в директорию со скаченным файлом и выполнить команду ./vault.exe server -dev
 Найти локальный адрес с портом 8200
