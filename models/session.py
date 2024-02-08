@@ -2,6 +2,7 @@ import pytest
 from hvac.exceptions import InvalidPath, Forbidden
 
 import config
+from clients.api.book_store import BookStoreClient
 from helpers import vault_helper
 
 
@@ -25,3 +26,8 @@ class Session:
 
         # email
         self.auth_data = self.vault_config['AUTH_DATA']
+
+        # api clients
+        self.books_store = BookStoreClient(host=config.DEMOQA_BASE_URL)
+
+

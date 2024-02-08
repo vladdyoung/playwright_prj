@@ -18,12 +18,7 @@ def pytest_addoption(parser):
     """
 
     group = parser.getgroup("playwright", "Playwright")
-    # parser.addoption(
-    #     "--url",
-    #     default=OSCAR_SANDBOX_BASE_URL,
-    #     help="Enter url"
-    # )
-    parser.addoption(
+    group.addoption(
         "--vault_token",
         action="store",
         help='Токен для доступа к vault')
