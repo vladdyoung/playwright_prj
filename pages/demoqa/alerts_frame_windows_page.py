@@ -26,12 +26,8 @@ class WindowPage(BasePage):
         with self.page.context.expect_page() as tab:
             self.page.locator(self.NEW_TAB_BTN).click()
 
-        new_tab = tab.value
-        return new_tab
+        self.new_tab = tab.value
 
-        # self.should_be_success_open(tab_val=new_tab.url,
-        #                             new_tab_url=config.NEW_TAB_URL,
-        #                             sample_heading_txt=self.SAMPLE_HEADING_TXT_NEW_TAB)
 
     def open_new_window(self):
         self.click_browser_window_btn()
@@ -40,13 +36,7 @@ class WindowPage(BasePage):
         with self.page.expect_event("popup") as page_info:
             self.page.locator(self.NEW_WIN_BTN).click()
 
-        popup = page_info.value
-
-        return popup
-
-        # self.should_be_success_open(tab_val=self.popup.url,
-        #                             new_tab_url=config.NEW_TAB_URL,
-        #                             sample_heading_txt=self.SAMPLE_HEADING_TXT_NEW_TAB)
+        self.popup = page_info.value
 
     def open_new_window_message(self):
         self.click_browser_window_btn()

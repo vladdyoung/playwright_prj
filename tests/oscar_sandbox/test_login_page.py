@@ -19,7 +19,7 @@ class TestLoginPage:
     @logger.catch(reraise=True)
     @allure.title('Проверка удаления аккаунта')
     def test_del_account(self, page, session, base_url):
-        page = LoginPage(page=page, session=session, url=base_url)
+        page = LoginPage(page=page, session=session, url=LOGIN_URL)
         page.open()
         page.go_to_page(page_name_locator=page.LOGIN_LINK)  # переход на страницу авторизации по кнопке
         page.reg_new_user()

@@ -181,3 +181,8 @@ conftest.py
     def test_reg_new_user(self, page, session, base_url):
         page = LoginPage(page=page, session=session, url=base_url)
 
+---------------------------------------------------------------------------------------------------------
+
+### Не добавлялась папка logs в проект. Или добавлялась в папку, где вызывался тест.
+
+
