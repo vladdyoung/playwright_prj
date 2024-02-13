@@ -33,11 +33,18 @@ class BasePage:
     def go_to_page(self, page_name_locator):
         self.page.locator(page_name_locator).click()
 
+    @allure.step('Перейти на вкладку')
+    def go_to_tab(self, tab_name_locator=None, text=None):
+        if text:
+            self.page.get_by_text(text=text).click()
+        else:
+            self.page.locator(tab_name_locator).click()
+
     @allure.step('Заполнить поле посимвольно')
     def fill_by_character_field(self, field_name_locator, text):
         field = self.page.locator(field_name_locator)
         field.type(text)  # посимвольное заполнение
-        field.press('Enter')
+        # field.press('Enter')
 
     @allure.step('Заполнить поле')
     def fill_field(self, field_name_locator, text):
