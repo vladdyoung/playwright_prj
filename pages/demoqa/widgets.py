@@ -13,21 +13,18 @@ class WidgetsPage(BasePage):
     WIDGETS_BTN = 'span:has-text("Widgets")'
     AUTO_COMPLETE = 'Auto Complete'
     MULTIPLE_CONTAINER_INPUT = '#autoCompleteMultipleContainer input'
-    MULTIPLE_CONTAINER_FORM = '#autoCompleteMultipleContainer'
     SINGLE_COLOR_NAME_INPUT = '#autoCompleteSingle input'
-    SINGLE_COLOR_NAME_FORM = '#autoCompleteSingle'
     SINGLE_COLOR_NAME = '.auto-complete__single-value'
-    GREEN_LINK = '#react-select-2-option-0'
-    RED_LINK = '#react-select-2-option-0'
+    COLOR_LINK = '#react-select-2-option-0'
     WHITE_LINK = '#react-select-3-option-0'
     ADD_MULTIPLE_COLOR_NAME = '.css-1rhbuit-multiValue'
 
     def multiple_fill_form(self):
         self.fill_by_character_field(field_name_locator=self.MULTIPLE_CONTAINER_INPUT, text='Green')
-        self.page.locator(self.GREEN_LINK).click()
+        self.page.locator(self.COLOR_LINK).click()
 
         self.fill_by_character_field(field_name_locator=self.MULTIPLE_CONTAINER_INPUT, text='Red')
-        self.page.locator(self.RED_LINK).click()
+        self.page.locator(self.COLOR_LINK).click()
 
     def single_fill_form(self):
         self.fill_by_character_field(field_name_locator=self.SINGLE_COLOR_NAME_INPUT, text='White')
